@@ -1,0 +1,311 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5faf6;
+    color: #173b24;
+}
+
+.categories-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 58px 24px 76px;
+}
+
+.categories-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 32px;
+}
+
+.categories-eyebrow {
+    margin: 0 0 12px;
+    color: #198754;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.categories-intro h1 {
+    max-width: 680px;
+    margin: 0;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    line-height: 1.02;
+}
+
+.categories-description {
+    max-width: 410px;
+    margin: 0 0 5px;
+    color: #55705d;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.categories-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d8e8dc;
+}
+
+.categories-count {
+    margin: 0;
+    color: #55705d;
+    font-weight: 700;
+}
+
+.categories-search {
+    position: relative;
+    flex: 0 1 280px;
+    color: #55705d;
+}
+
+.categories-search svg {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.categories-search input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid #d8e8dc;
+    border-radius: 999px;
+    background: #fff;
+    color: #173b24;
+    font-size: 0.92rem;
+}
+
+.categories-search input:focus {
+    outline: none;
+    border-color: #198754;
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.categories-empty {
+    grid-column: 1 / -1;
+    margin: 30px 0;
+    padding: 40px;
+    border: 1px dashed #c8ddce;
+    border-radius: 14px;
+    background: #fff;
+    color: #55705d;
+    text-align: center;
+}
+
+.categories-no-match {
+    margin-top: -6px;
+}
+
+.category-card[hidden] {
+    display: none;
+}
+
+.category-card {
+    position: relative;
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    padding: 28px;
+    overflow: hidden;
+    border-radius: 16px;
+    color: #173b24;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 26px rgba(31, 78, 43, 0.15);
+}
+
+.category-card.has-image {
+    color: #fff;
+}
+
+/* Applied before the image/overlay rules below so those two can win back
+   to position: absolute despite matching this same selector - otherwise
+   the background image drops into normal flow and blows up card height. */
+.category-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.category-card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.35s ease;
+}
+
+.category-card:hover .category-card-image {
+    transform: scale(1.05);
+}
+
+.category-card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(23, 59, 36, 0.15) 0%, rgba(15, 36, 22, 0.82) 100%);
+}
+
+.category-index {
+    font-size: 0.8rem;
+    font-weight: 800;
+    opacity: 0.65;
+}
+
+.category-icon {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 5.5rem;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.2;
+}
+
+.category-count {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    color: #173b24;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+}
+
+.category-card.has-image .category-count {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    backdrop-filter: blur(2px);
+}
+
+.category-card h2 {
+    max-width: 300px;
+    margin: auto 0 10px;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.category-card p {
+    max-width: 330px;
+    margin: 0 0 24px;
+    color: rgba(23, 59, 36, 0.75);
+    line-height: 1.55;
+}
+
+.category-card.has-image p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 160px;
+    border-bottom: 1px solid rgba(23, 59, 36, 0.4);
+    padding-bottom: 5px;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.category-card.has-image .category-link {
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.category-link span {
+    font-size: 1.15rem;
+}
+
+.categories-callout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 64px;
+    padding: 32px 36px;
+    border-radius: 14px;
+    background: #173b24;
+    color: #fff;
+}
+
+.categories-callout .categories-eyebrow {
+    color: #8fc7a0;
+}
+
+.categories-callout h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+.callout-button {
+    flex: 0 0 auto;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: #8fc7a0;
+    color: #173b24;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.callout-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 700px) {
+    .categories-page {
+        padding: 36px 16px 56px;
+    }
+
+    .categories-intro,
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .categories-intro {
+        gap: 20px;
+    }
+
+    .categories-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .categories-search {
+        flex-basis: auto;
+    }
+
+    .category-card {
+        min-height: 280px;
+    }
+
+    .categories-callout {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 44px;
+        padding: 28px 24px;
+    }
+}

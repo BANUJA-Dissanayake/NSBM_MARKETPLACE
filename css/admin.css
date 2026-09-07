@@ -1,0 +1,536 @@
+* {
+    box-sizing: border-box;
+}
+
+.admin-body {
+    margin: 0;
+    background: #f5faf6;
+    color: #173b24;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+.admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #173b24;
+    color: #d8e8dc;
+    padding: 24px 16px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.admin-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    padding: 0 8px;
+}
+
+.admin-nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.admin-nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* !important needed to beat Bootstrap's own .collapse:not(.show){display:none}
+   rule, which otherwise wins on specificity and hides this permanently -
+   always expanded on desktop; the collapse/show toggling only kicks in
+   inside the mobile media query below (same pattern as .navbar-collapse in
+   css/header-cyber.css). */
+.admin-nav-collapse {
+    display: flex !important;
+    flex-direction: column;
+    flex: 1;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.admin-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 10px;
+    color: #b9d8c0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-nav a i {
+    width: 18px;
+    text-align: center;
+}
+
+.admin-nav a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.admin-nav a.active {
+    background: #198754;
+    color: #fff;
+}
+
+.admin-sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 16px;
+    margin-top: 16px;
+}
+
+.admin-sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #b9d8c0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.admin-sidebar-footer a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+/* ---------- Main area ---------- */
+.admin-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.admin-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: #fff;
+    border-bottom: 1px solid #e5efe7;
+}
+
+.admin-topbar h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.admin-topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #55705d;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.admin-content {
+    padding: 28px 32px 48px;
+}
+
+/* ---------- Stat cards (dashboard) ---------- */
+.admin-section-heading {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #173b24;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.admin-stats-primary {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.admin-stats-primary .stat-value {
+    font-size: 1.7rem;
+}
+
+.admin-stat-card {
+    background: #fff;
+    border: 1px solid #e5efe7;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 8px 20px rgba(31, 78, 43, 0.06);
+}
+
+.admin-stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #173b24;
+}
+
+.admin-stat-card .stat-label {
+    color: #55705d;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-stat-card i {
+    color: #198754;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+/* ---------- Cards / panels ---------- */
+.admin-panel {
+    background: #fff;
+    border: 1px solid #e5efe7;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(31, 78, 43, 0.06);
+    margin-bottom: 28px;
+}
+
+.admin-panel h2 {
+    margin: 0 0 18px;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+/* ---------- Forms ---------- */
+.admin-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.admin-field-static-label {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #55705d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-field {
+    margin-bottom: 16px;
+}
+
+.admin-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.admin-field input,
+.admin-field select,
+.admin-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c8ddce;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.admin-field input:focus,
+.admin-field select:focus,
+.admin-field textarea:focus {
+    outline: none;
+    border-color: #198754;
+}
+
+.admin-field-hint {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    color: #55705d;
+}
+
+.admin-current-image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #c8ddce;
+    margin-bottom: 10px;
+}
+
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    background: #198754;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.admin-btn:hover {
+    background: #157347;
+}
+
+.admin-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.admin-btn-outline {
+    background: transparent;
+    color: #198754;
+    border: 1px solid #198754;
+}
+
+.admin-btn-outline:hover {
+    background: #eaf7ee;
+}
+
+.admin-btn-danger {
+    background: #dc3545;
+}
+
+.admin-btn-danger:hover {
+    background: #bb2d3b;
+}
+
+.admin-message {
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    white-space: pre-line;
+}
+
+.admin-message.success {
+    background: #e6f7ec;
+    color: #198754;
+}
+
+.admin-message.error {
+    background: #fde8e8;
+    color: #dc3545;
+}
+
+/* ---------- Tables ---------- */
+.admin-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: #55705d;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid #edf3ee;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #edf3ee;
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table-actions {
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.admin-badge {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.admin-badge.active { background: #e6f7ec; color: #198754; }
+.admin-badge.deactive { background: #fde8e8; color: #dc3545; }
+.admin-badge.unread { background: #fff6e0; color: #b8860b; }
+.admin-badge.read { background: #eef1ee; color: #55705d; }
+
+.admin-empty {
+    padding: 30px;
+    text-align: center;
+    color: #8a8f8a;
+}
+
+.admin-table-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #e5efe7;
+}
+
+.admin-table-no-image {
+    color: #8a8f8a;
+    font-size: 0.85rem;
+}
+
+/* ---------- Pagination ---------- */
+.admin-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #edf3ee;
+}
+
+.admin-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #e5efe7;
+    border-radius: 999px;
+    color: #173b24;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.admin-page-btn:hover:not(.disabled):not(.active) {
+    border-color: #198754;
+    color: #198754;
+}
+
+.admin-page-btn.active {
+    background: #198754;
+    border-color: #198754;
+    color: #fff;
+}
+
+.admin-page-btn.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.admin-page-ellipsis {
+    padding: 0 4px;
+    color: #8a8f8a;
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .admin-shell {
+        grid-template-columns: 1fr;
+        /* Without this, Grid's default row-stretch spreads the shell's
+           min-height:100vh across both rows, leaving a tall block of the
+           sidebar's dark background under the collapsed (near-zero-height)
+           nav instead of letting .admin-main take the rest of the page. */
+        align-content: start;
+    }
+
+    .admin-sidebar {
+        position: static;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .admin-brand {
+        margin-bottom: 0;
+    }
+
+    .admin-nav-toggle {
+        display: inline-flex;
+    }
+
+    /* Bootstrap's collapse plugin toggles the .show class - hidden until
+       then, so the hamburger button controls it instead of it always
+       taking up space in the stacked mobile layout. */
+    .admin-nav-collapse {
+        display: none !important;
+        margin-top: 20px;
+    }
+
+    .admin-nav-collapse.show {
+        display: flex !important;
+    }
+
+    .admin-nav {
+        flex-direction: column;
+    }
+
+    .admin-sidebar-footer {
+        flex-direction: column;
+    }
+
+    .admin-topbar {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .admin-content {
+        padding: 20px 16px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-topbar h1 {
+        font-size: 1.15rem;
+    }
+
+    .admin-form-row {
+        grid-template-columns: 1fr;
+    }
+}
